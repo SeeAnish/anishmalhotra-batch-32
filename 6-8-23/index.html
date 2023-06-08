@@ -5,7 +5,7 @@
 </head>
 <body>
   <form onsubmit="displayFormValues(event)">
-    <label>First Name: </label><input type="text" id="fname" placeholder="First name" required><br><br>
+    <label for="fname">First Name: </label><input type="text" id="fname" placeholder="First name" required><br><br>
     
     <label> Last Name: </label><input type="text" id="lname" placeholder="Last Name" required><br><br>
 
@@ -25,6 +25,7 @@
     <label>Date of birth: </label><input type="date" id="dob" required><br><br>
     
     <input type="submit" value="Submit">
+    <button>submit </button>
   </form>
 
   <div id="formValues"></div>
@@ -39,18 +40,27 @@
       var email = document.getElementById("email").value;
       var phone = document.getElementById("phone").value;
       var dob = document.getElementById('dob').value;
-      var hobbies = document.querySelectorAll('input[name="hobby"]:checked');
-      var selectedHobbies = Array.from(hobbies).map(function(hobby) {
-        return hobby.value;
-      });
-      var gender = document.querySelector('input[name="gender"]:checked').value;
+      //var gender = document.querySelector('input[name="gender"]:checked').value;
+      var gender = [];
+      var genderoptions = document.getElementsByName("gender");
+      for(i = 0; i < genderoptions.length; i++) if(genderoptions[i].checked) gender.push(genderoptions[i].value);
+      var hobbies = [];
+      var hobby = document.getElementsByName("hobby");
+      for(i =0; i < hobby.length; i++)
+      {
+        if(hobby[i].checked) hobbies.push(hobby[i].value);
+      }
+      //var hobbies = document.querySelectorAll('input[name="hobby"]:checked');
+      // var selectedHobbies = Array.from(hobbies).map(function(hobby) {
+      //   return hobby.value;
+      // });
 
       // Display form values
       var formValues = "First Name = " + fname + "<br>" +
                        "Last Name = " + lname + "<br>" + 
                        "Email: " + email + "<br>" +
                        "Phone: " + phone + "<br>" +
-                       "Hobbies: " + selectedHobbies.join(", ") + "<br>" +
+                       "Hobbies: " + hobbies.join(", ") + "<br>" +
                        "Gender: " + gender + "<br>" +
                        "Date of Birth = " + dob;
 
@@ -59,6 +69,7 @@
       // do we have to write function_name(event) ?
       // I didn't understood queryselector
       // hobbies walla toh kuch samjha hi nahi mujhe
+      // if we are not using database where are the values being stored
     }
   </script>
 </body>
