@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./bootstrap.css'],
   template: ` 
   <p> {{count}} </p>
   <button (click) = "like()">Yolo</button>
   `
 })
-export class HeaderComponent {
-  name: String = "text"
-  constructor(){}
+export class HeaderComponent implements OnInit {
+  public inputValue: String = "";
+  constructor(){
+    this.inputValue;
+  }
+  isLoggedIn:boolean = false;
+  toggleLogin() {
+    this.isLoggedIn = !this.isLoggedIn;
+  }
   count = 0;
   like(){this.count++;}
+  ngOnInit() {
+  }
 }
-//Design a header with a background blue with display menu option contact, log in, search box
-//navigation shoud be vertical
-// when you click on login display log out and vice versa
+//'./bootstrap.min.css','./header.component.css'
