@@ -1,0 +1,16 @@
+<h1>Login Page</h1>
+<form class="modal-content">
+  <div class="container">
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+    <label for="email"><b>Email</b></label>
+    <input type="text" name="email" placeholder="Enter Email" [(ngModel)] ="loginInfo.email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="text" name="psw" placeholder="Enter Password" [(ngModel)] = "loginInfo.pwd" required>
+
+    <div class="clearfix">
+      <button type="button" class="signupbtn" (click)="onlogin()"> Login</button>
+    </div>
+  </div>
+</form>

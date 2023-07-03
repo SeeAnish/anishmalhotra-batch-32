@@ -1,0 +1,12 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+
+  <div class="topnav-right">
+    <a [routerLink] ="['/login']" routerLinkActive="active" *ngIf="!aservice.isLoggedIn">Login</a>
+    <a *ngIf="aservice.isLoggedIn">Logout</a>
+  </div>
+</div>
+
+

@@ -1,0 +1,9 @@
+<h1>Profile</h1>
+<h2>Manohar Reddy B</h2>
+
+<div *ngIf="pService.getProfile() | async as profile">Accounts
+
+<app-accounts-info
+(onAccountSelect)="onAccountselectedInfo($event)" 
+[accountInfo]="profile?.accounts || []"></app-accounts-info>
+</div>
