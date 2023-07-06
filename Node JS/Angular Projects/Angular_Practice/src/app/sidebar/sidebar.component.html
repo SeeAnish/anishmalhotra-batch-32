@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="sidebar">
+      <button (click)="showSubmissionForm = true" class="btn btn-primary">Submission Form</button>
+    </div>
+    <div class="content">
+        <div *ngIf="showSubmissionForm" class="table-container">
+      <table>
+        <!-- Table header -->
+        <thead>
+          <tr>
+            <th>Full name</th>
+            <th>Lead name</th>
+            <th>Technology</th>
+            <th>Vendor Name</th>
+            <th>Rate</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <!-- Table body -->
+        <tbody>
+          <tr *ngFor="let data of tableData; let i = index">
+            <td>
+                <ng-container *ngIf="!data.isEditing; else editField">
+                    {{ data.fullname }}
+                  </ng-container>
+                  <ng-template #editField>
+                    <input type="text" [(ngModel)]="data.fullname" />
+                  </ng-template>
+            </td>
+            <td>
+                <ng-container *ngIf="!data.isEditing; else editfield">
+                  {{ data.LeadName }}
+                </ng-container>
+                <ng-template #editfield>
+                  <input type="text" [(ngModel)]="data.LeadName" />
+                </ng-template>
+              </td>
+            <td>
+               <ng-container *ngIf="!data.isEditing; else edit">{{data.technology}}</ng-container>
+               <ng-template #edit><input type="text" [(ngModel)]="data.technology"></ng-template>
+            </td>
+            <td>
+                <ng-container *ngIf="!data.isEditing; else edits">{{data.vendorName}}</ng-container>
+                <ng-template #edits><input type="text" [(ngModel)]="data.vendorName" /></ng-template>
+            </td>
+            <td>
+                <ng-container *ngIf="!data.isEditing; else change">{{data.rate}}</ng-container>
+                <ng-template #change><input type="text" [(ngModel)]="data.rate"></ng-template>
+            </td>
+            <td>
+                <button (click)="deleterow(i)" class="btn btn-danger">Delete</button>&nbsp;
+                <button *ngIf="!data.isEditing" (click) = 'toggleEdit(i)' class="btn btn-primary">Edit</button>&nbsp;
+                <button *ngIf="data.isEditing" (click) = 'saverow(i)' class="btn btn-primary">Save</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="add-button-container">
+      <button (click) = "addrow()" class="btn btn-success">ADD</button>
+    </div>
+    </div>
+  </div>
+</div>

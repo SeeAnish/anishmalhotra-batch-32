@@ -1,4 +1,4 @@
-import { AuthService } from './../../../../todoApp/src/app/services/auth.service';
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  constructor(public aservice:AuthService) {
+  }
 
-  constructor(public aservice:AuthService) {}
+  logout() {
+    this.aservice.logout();
+  }
 
   ngOnInit() {
   }

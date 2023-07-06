@@ -4,9 +4,11 @@
   <a class="active" href="#home">Home</a>
 
   <div class="topnav-right">
-    <a [routerLink] ="['/login']" routerLinkActive="active" *ngIf="!aservice.isLoggedIn">Login</a>
-    <a *ngIf="aservice.isLoggedIn">Logout</a>
+    <ng-container *ngIf="!aservice.isLoggedIn; else loggedInTemplate">
+      <a [routerLink]="['/login']" routerLinkActive="active" (click)="aservice.login()">Login</a>
+    </ng-container>
+    <ng-template #loggedInTemplate>
+      <a (click)="logout()" href="#loggedout">Logout</a>
+    </ng-template>
   </div>
 </div>
-
-

@@ -8,3 +8,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Angular_Practice';
 }
+// Full name
+// lead name
+// Technology
+// Vendor Name
+// Rate
+// Actions - delete, edit
+// Add row
+// Tech fileter
+// Lead filter

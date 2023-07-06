@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,11 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   loginInfo = {email: '', pwd: ''}
   isuserloggedin = false;
-  constructor(public aservice: AuthService) { }
+  constructor(private aservice: AuthService, private router: Router) { }
   onlogin(){
     if(this.loginInfo.email == "a@b.com" && this.loginInfo.pwd == "123")
     {
-      console.log("User Authenticated")
+      this.aservice.login();
+      console.log("User Authenticated");
+      this.router.navigate(['/sidebar']);
     }
   }
   ngOnInit() {
