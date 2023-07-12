@@ -4,6 +4,22 @@
     </div>
     <div class="content">
         <div *ngIf="showSubmissionForm" class="table-container">
+            <div class="filters">
+                <div class="filter">
+                  <label for="techFilter">Tech Filter:</label>
+                  <select class="form-control" id="techFilter" [(ngModel)]="selectedTechFilter" (change) = "applyfilter()">
+                    <option value="">All</option>
+                    <option *ngFor="let tech of uniquetech" [value]="tech">{{ tech }}</option>
+                  </select>
+                </div>
+                <div class="filter">
+                  <label for="leadFilter">Lead Filter:</label>
+                  <select class="form-control" id="leadFilter" [(ngModel)]="selectedLeadFilter" (change)="applyfilter()">
+                    <option value="">All</option>
+                    <option *ngFor="let lead of uniqueleads" [value]="lead">{{ lead }}</option>
+                  </select>
+                </div>
+              </div>
       <table>
         <!-- Table header -->
         <thead>

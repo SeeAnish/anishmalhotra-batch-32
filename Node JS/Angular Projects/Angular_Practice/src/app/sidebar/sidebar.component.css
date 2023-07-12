@@ -59,3 +59,14 @@ th {
 .table-container button {
   margin-right: 5px;
 }
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.filter {
+  flex: 1;
+  margin-right: 10px;
+}

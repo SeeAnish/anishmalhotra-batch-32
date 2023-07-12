@@ -2,14 +2,26 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { groupBy } from 'lodash';
 
+interface rawdata 
+{
+  fullname: string;
+  LeadName: string;
+  technology: string;
+  vendorName: string;
+  rate: string;
+  isEditing: boolean;
+}
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
-  techfile:string = '';
-  leadfilter:String = '';
+
+export class SidebarComponent 
+{
+  selectedTechFilter:string = '';
+  selectedLeadFilter:String = '';
   constructor(private router: Router) {}
   showSubmissionForm: boolean = false;
   tableData = [{
@@ -63,5 +75,15 @@ export class SidebarComponent {
     return Object.keys(data);
   }
   
+  filteredTableData: rawdata[] = [];
+  
+  applyfilter() {
+    if(this.selectedLeadFilter) 
+      this.filteredTableData = this.tableData.filter(data => data.LeadName === this.selectedLeadFilter)
+    if(this.selectedTechFilter) 
+      this.filteredTableData = this.tableData.filter(data => data.technology === this.selectedTechFilter)
+    else
+      this.filteredTableData = this.tableData
+  }
 
 }
