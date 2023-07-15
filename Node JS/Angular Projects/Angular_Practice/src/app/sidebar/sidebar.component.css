@@ -54,10 +54,11 @@ th {
   margin-top: 20px;
 }
 
-.sidebar button,
-.add-button-container button,
-.table-container button {
-  margin-right: 5px;
+.sidebar button:hover,
+.add-button-container button:hover,
+.table-container button:hover {
+  background-color: #45a049;
+  margin-right: 5px;  
 }
 
 .filters {
@@ -69,4 +70,22 @@ th {
 .filter {
   flex: 1;
   margin-right: 10px;
+}
+
+.filter select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  appearance: none; /* this will remove the default arrow in some browsers */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.filter select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76,175,80,0.5);
 }

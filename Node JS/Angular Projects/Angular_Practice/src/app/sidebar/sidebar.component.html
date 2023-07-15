@@ -1,9 +1,9 @@
 <div class="container">
     <div class="sidebar">
-      <button (click)="showSubmissionForm = true" class="btn btn-primary">Submission Form</button>
+      <button (click)="onButtonClick()" class="btn btn-primary">Submission Form</button>
     </div>
     <div class="content">
-        <div *ngIf="showSubmissionForm" class="table-container">
+        <div *ngIf="showtable" class="table-container">
             <div class="filters">
                 <div class="filter">
                   <label for="techFilter">Tech Filter:</label>
@@ -34,26 +34,18 @@
         </thead>
         <!-- Table body -->
         <tbody>
-          <tr *ngFor="let data of tableData; let i = index">
+          <tr *ngFor="let data of filteredTableData; let i = index">
             <td>
-                <ng-container *ngIf="!data.isEditing; else editField">
-                    {{ data.fullname }}
-                  </ng-container>
-                  <ng-template #editField>
-                    <input type="text" [(ngModel)]="data.fullname" />
-                  </ng-template>
+                <ng-container *ngIf="!data.isEditing; else editField">{{ data.fullname }}</ng-container>
+                  <ng-template #editField><input type="text" [(ngModel)]="data.fullname" /></ng-template>
             </td>
             <td>
-                <ng-container *ngIf="!data.isEditing; else editfield">
-                  {{ data.LeadName }}
-                </ng-container>
-                <ng-template #editfield>
-                  <input type="text" [(ngModel)]="data.LeadName" />
-                </ng-template>
+                <ng-container *ngIf="!data.isEditing; else editfield">{{ data.LeadName }}</ng-container>
+                <ng-template #editfield><input type="text" [(ngModel)]="data.LeadName" [readOnly]="selectedLeadFilter"/></ng-template>
               </td>
             <td>
                <ng-container *ngIf="!data.isEditing; else edit">{{data.technology}}</ng-container>
-               <ng-template #edit><input type="text" [(ngModel)]="data.technology"></ng-template>
+               <ng-template #edit><input type="text" [(ngModel)]="data.technology" [readOnly]="selectedTechFilter"></ng-template>
             </td>
             <td>
                 <ng-container *ngIf="!data.isEditing; else edits">{{data.vendorName}}</ng-container>
@@ -64,7 +56,7 @@
                 <ng-template #change><input type="text" [(ngModel)]="data.rate"></ng-template>
             </td>
             <td>
-                <button (click)="deleterow(i)" class="btn btn-danger">Delete</button>&nbsp;
+                <button (click)="deleterow(i, data)" class="btn btn-danger">Delete</button>&nbsp;
                 <button *ngIf="!data.isEditing" (click) = 'toggleEdit(i)' class="btn btn-primary">Edit</button>&nbsp;
                 <button *ngIf="data.isEditing" (click) = 'saverow(i)' class="btn btn-primary">Save</button>
             </td>
